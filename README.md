@@ -1,4 +1,10 @@
+# environment variables
+app.version
+app.wait.duration.ms.int
+app.wait.exec.count.int
 
+ex) run locally
+mvnw compile quarkus:dev -Dapp.version=1.0.0 -Dapp.wait.duration.ms.int=3000 -Dapp.wait.exec.count.int=3
 
 # ------------ OpenShift image build
 Add OpenShift Maven extension:

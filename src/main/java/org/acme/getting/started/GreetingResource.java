@@ -11,6 +11,8 @@ public class GreetingResource {
 
     private static String HOSTNAME;
     private static int requestCounter;
+    private static String[] quotes = {"Why did the chicken cross the road?", "Where did the river bend?", "What time is it?"};
+    private static int quoteCounter;
 
     String appVersion = ConfigProvider.getConfig().getValue("app.version", String.class);
     int waitSec = ConfigProvider.getConfig().getValue("app.wait.duration.ms.int", Integer.class);
@@ -25,7 +27,15 @@ public class GreetingResource {
             System.out.println("issuing wait...");
             wait(getWaitTime());
         }
-        return "Why did the chicken cross the road? (" + getIdentification() + ").";
+        
+        return quotes[getQuoteCounter()] + " (" + getIdentification() + ").";
+    }
+
+    private int getQuoteCounter(){
+        if(GreetingResource.quoteCounter == 2)  GreetingResource.quoteCounter = 0;
+        else GreetingResource.quoteCounter++;
+        
+        return GreetingResource.quoteCounter;
     }
 
     private int getWaitTime(){

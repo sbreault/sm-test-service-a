@@ -31,6 +31,13 @@ public class GreetingResource {
         return quotes[getQuoteCounter()] + " (" + getIdentification() + ").";
     }
 
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("health")
+    public String getHealth(){
+        return "ok - up and running";
+    }    
+
     private int getQuoteCounter(){
         if(GreetingResource.quoteCounter == 2)  GreetingResource.quoteCounter = 0;
         else GreetingResource.quoteCounter++;
